@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.name = "hammertime"
   s.version = "0.0.3"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new(">= 0")
   s.authors = ["Avdi Grimm"]
-  s.date = "2012-01-30"
+  s.date = "2024-03-19"
   s.description = "When this library is required, it replaces the default Ruby exception-raising\nbehavior.  When an error is raised, the developer is presented with a menu\nenabling them to ignore the error, view a stack trace, debug the error using IRB\nor ruby-debug, and more.\n"
   s.email = "avdi@avdi.org"
   s.extra_rdoc_files = [
@@ -32,25 +32,12 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/avdi/hammertime"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
   s.summary = "Exception debugging console for Ruby"
 
-  if s.respond_to? :specification_version then
-    s.specification_version = 3
-
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<ruby-debug>, ["~> 0.10"])
-      s.add_runtime_dependency(%q<highline>, ["~> 1.5"])
-      s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
-    else
-      s.add_dependency(%q<ruby-debug>, ["~> 0.10"])
-      s.add_dependency(%q<highline>, ["~> 1.5"])
-      s.add_dependency(%q<rspec>, [">= 1.2.9"])
-    end
-  else
-    s.add_dependency(%q<ruby-debug>, ["~> 0.10"])
-    s.add_dependency(%q<highline>, ["~> 1.5"])
-    s.add_dependency(%q<rspec>, [">= 1.2.9"])
-  end
+  s.add_runtime_dependency "highline", "~> 2.0"
+  s.add_runtime_dependency "debug", "~> 1.8"
+  
+  s.add_development_dependency "rspec", "~> 3.12"
+  s.add_development_dependency "rake", "~> 13.0"
 end
 

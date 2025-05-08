@@ -40,19 +40,19 @@ When an error is raised, a menu of possible actions will be presented at the con
 
 This enables a fix-and-continue style of development:
 
-    $ ruby example.rb                                                
+    $ ruby example.rb
     Attempt (1/3)
 
     === Stop! Hammertime. ===
     An error has occurred at example.rb:6:in `faulty_method'
-    The error is: #<RuntimeError: Oh no!>                   
-    1. Continue (process the exception normally)            
-    2. Ignore (proceed without raising an exception)        
+    The error is: #<RuntimeError: Oh no!>
+    1. Continue (process the exception normally)
+    2. Ignore (proceed without raising an exception)
     3. Permit by type (don't ask about future errors of this type)
     4. Permit by line (don't ask about future errors raised from this point)
-    5. Backtrace (show the call stack leading up to the error)              
-    6. Debug (start a debugger)                                             
-    7. Console (start an IRB session)                                       
+    5. Backtrace (show the call stack leading up to the error)
+    6. Debug (start a debugger)
+    7. Console (start an IRB session)
     What now?
     7
 

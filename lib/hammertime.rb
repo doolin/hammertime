@@ -19,10 +19,10 @@ module Hammertime
   end
 
   def self.debug_supported?
-    require 'ruby-debug'
+    require 'debug'
     @debug_support = true
   rescue LoadError
-    warn "Unable to load ruby-debug"
+    warn "Unable to load debug"
     warn "Gem not installed or debugging not supported on your platform"
     @debug_support = false
   end
@@ -92,7 +92,7 @@ module Hammertime
         end
         if Hammertime.debug_supported?
           menu.choice "Debug (start a debugger)" do
-            debugger
+            binding.break
             false
           end
         end
@@ -157,5 +157,4 @@ unless ::Object < Hammertime
   class ::Object
     include ::Hammertime
   end
-  Debugger.start if $hammertime_debug_support
 end
