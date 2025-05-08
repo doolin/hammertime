@@ -72,7 +72,7 @@ module Hammertime
           true
         end
         menu.choice "Ignore (proceed without raising an exception)" do
-          true
+          return # Return from hammertime_raise without raising
         end
         menu.choice "Permit by type (don't ask about future errors of this type)" do
           ::Hammertime.ignored_errors << error.class
