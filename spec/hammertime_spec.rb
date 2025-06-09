@@ -28,7 +28,13 @@ RSpec.describe Hammertime do
   end
 
   describe '.stopped' do
-    xit 'defaults to false' do
+    # We assume that any particular session invoking Hammertime
+    # will not initialize the @stopped class instance variable.
+    # Without this, spec order matters, or the spec will fail
+    # intermittently.
+    before { Hammertime.stopped = false }
+
+    it 'defaults to false' do
       expect(Hammertime.stopped).to be false
     end
 
