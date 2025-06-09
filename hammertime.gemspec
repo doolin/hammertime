@@ -34,14 +34,14 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.summary = "Exception debugging console for Ruby"
 
-  s.add_runtime_dependency "highline", "~> 2.0"
+  s.add_runtime_dependency "highline", "~> 3.0"
   s.add_runtime_dependency "debug", "~> 1.8"
   
   s.add_development_dependency "rspec", "~> 3.12"
   s.add_development_dependency "rake", "~> 13.0"
   s.add_development_dependency "rdoc", "~> 6.6"
   s.add_development_dependency "rubocop", "~> 1.62"
-  s.add_development_dependency "rubocop-rspec", "~> 2.27"
+  s.add_development_dependency "rubocop-rspec", "~> 3.0"
   s.add_development_dependency "simplecov", "~> 0.22.0"
 end
 
