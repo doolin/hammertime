@@ -1,4 +1,3 @@
-require 'thread'
 require 'highline'
 
 module Hammertime
@@ -72,7 +71,10 @@ module Hammertime
           true
         end
         menu.choice "Ignore (proceed without raising an exception)" do
-          return # Return from hammertime_raise without raising
+          # Apparently Highline changed the internal implementation
+          # such that returning from this block induces a LocalJumpError.
+          # false will fall through for the desired behavior.
+          false # return # Return from hammertime_raise without raising
         end
         menu.choice "Permit by type (don't ask about future errors of this type)" do
           ::Hammertime.ignored_errors << error.class
@@ -102,7 +104,10 @@ module Hammertime
           false
         end
       end
-      continue = c.choose(&menu_config) until continue
+
+      loop do
+        break unless c.choose(&menu_config)
+      end
     end
   ensure
     ::Hammertime.stopped = false
@@ -150,7 +155,6 @@ module Hammertime
       fallback.call
     end
   end
-
 end
 
 unless ::Object < Hammertime

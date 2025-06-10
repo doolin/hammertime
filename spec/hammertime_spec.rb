@@ -143,7 +143,7 @@ RSpec.describe Hammertime do
     context 'when choosing Ignore' do
       let(:choice) { 'Ignore' }
 
-      xit 'proceeds without raising an exception' do
+      it 'proceeds without raising an exception' do
         allow(console).to receive(:choose) do |&block|
           with_menu_choice('Ignore') do |menu|
             block.call(menu)
