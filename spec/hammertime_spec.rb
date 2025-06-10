@@ -142,6 +142,14 @@ RSpec.describe Hammertime do
 
     context 'when choosing Ignore' do
       let(:choice) { 'Ignore' }
+      let(:mutex) { instance_double(Mutex) }
+
+      before do
+        Hammertime.stopped = false
+        allow(Hammertime).to receive(:mutex).and_return(mutex)
+        allow(mutex).to receive(:try_lock).and_return(true)
+        allow(mutex).to receive(:unlock)
+      end
 
       it 'proceeds without raising an exception' do
         allow(console).to receive(:choose) do |&block|
@@ -159,14 +167,14 @@ RSpec.describe Hammertime do
       let(:original_errors) { Hammertime.ignored_errors.dup }
 
       before do
-        expect(console).to receive(:say).with('Added RuntimeError to permitted error types')
+        allow(Hammertime.hammertime_console).to receive(:say).with('Added RuntimeError to permitted error types')
       end
 
       after do
         Hammertime.ignored_errors.replace(original_errors)
       end
 
-      xit 'adds error type to permitted errors' do
+      it 'adds error type to permitted errors' do
         allow(console).to receive(:choose) do |&block|
           # First, verify that RuntimeError is not in ignored_errors
           expect(Hammertime.ignored_errors).not_to include(RuntimeError)
