@@ -51,8 +51,19 @@ RSpec.describe Hammertime do
     end
   end
 
-  # TODO: Fix the order dependency of this example group.
-  xdescribe '#hammertime_raise' do
+  describe '#hammertime_raise' do
+    let(:console) { instance_double(HighLine) }
+
+    before do
+      allow(Hammertime).to receive(:hammertime_console).and_return(console)
+      allow(console).to receive(:say)
+      allow(console).to receive(:choose) do |&block|
+        with_menu_choice('Continue') do |menu|
+          block.call(menu)
+        end
+      end
+    end
+
     it 'raises the original error when ignored' do
       error = RuntimeError.new('test error')
       allow(Hammertime).to receive(:ignored_errors).and_return([RuntimeError])
