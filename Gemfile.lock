@@ -74,6 +74,9 @@ GEM
     rubocop-ast (1.45.1)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
+    rubocop-rake (0.7.1)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.72.1)
     rubocop-rspec (3.6.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
@@ -100,6 +103,7 @@ DEPENDENCIES
   rdoc (~> 6.6)
   rspec (~> 3.12)
   rubocop (~> 1.62)
+  rubocop-rake
   rubocop-rspec (~> 3.0)
   simplecov (~> 0.22.0)
 
