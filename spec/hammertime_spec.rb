@@ -2,6 +2,22 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 require 'highline'
 
 RSpec.describe Hammertime do
+  describe '#raise' do
+    it 'raises the original error when ignored' do
+      error = RuntimeError.new('test error')
+      allow(Hammertime).to receive(:ignored_errors).and_return([RuntimeError])
+      expect { Object.new.raise(error) }.to raise_error(RuntimeError, 'test error')
+    end
+  end
+
+  describe '#fail' do
+    it 'raises the original error when ignored' do
+      error = RuntimeError.new('test error')
+      allow(Hammertime).to receive(:ignored_errors).and_return([RuntimeError])
+      expect { Object.new.fail(error) }.to raise_error(RuntimeError, 'test error')
+    end
+  end
+
   describe '.ignored_errors' do
     it 'defaults to including LoadError' do
       expect(Hammertime.ignored_errors).to include(LoadError)
